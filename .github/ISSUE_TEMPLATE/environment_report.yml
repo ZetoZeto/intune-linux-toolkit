@@ -1,0 +1,45 @@
+name: Environment / compatibility report
+description: Report which Ubuntu + Intune client version reproduces (or fixes) a documented behaviour
+labels: ["compatibility"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        These reports are the most useful contribution to this project — they build the
+        compatibility picture that no official documentation provides. **No identifiers**, please.
+  - type: input
+    id: os
+    attributes:
+      label: OS release
+      placeholder: "Ubuntu 24.04.4 LTS"
+    validations:
+      required: true
+  - type: input
+    id: intune-portal
+    attributes:
+      label: intune-portal version
+      placeholder: "apt-cache policy intune-portal"
+    validations:
+      required: true
+  - type: input
+    id: broker
+    attributes:
+      label: microsoft-identity-broker version
+    validations:
+      required: true
+  - type: dropdown
+    id: state-directory-mode
+    attributes:
+      label: STATE_DIRECTORY behaviour observed (before applying the drop-in)
+      options:
+        - "Mode 1 — agent dies in 238/STATE_DIRECTORY before exec"
+        - "Mode 2 — agent runs but logs 'Cannot checkin before a user logs in'"
+        - "Neither — background sync worked without the drop-in"
+        - "Not applicable / didn't test"
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Anything else — did the drop-in fix it? Did the cadence hold?

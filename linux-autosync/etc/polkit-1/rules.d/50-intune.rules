@@ -1,0 +1,8 @@
+// Auto-allow the Intune device configuration/sync action without a password prompt.
+// Scope kept deliberately narrow: only the identified ConfigureDevice action.
+// List the real actions on a host with: pkaction | grep intune
+polkit.addRule(function(action, subject) {
+    if (action.id == "com.microsoft.intune.actions.ConfigureDevice") {
+        return polkit.Result.YES;
+    }
+});

@@ -1,0 +1,51 @@
+name: Bug report
+description: Something in a script or drop-in doesn't behave as documented
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Before you post:** never paste diagnostic output, logs, tenant IDs, hostnames or UPNs.
+        Redact to placeholders (`example.com`, `00000000-…`, `linux-test`) first — see
+        [SECURITY.md](../blob/main/SECURITY.md).
+  - type: input
+    id: component
+    attributes:
+      label: Which component
+      placeholder: "linux-autosync / fresh-reinstall.sh / Diagnose-Compliance.ps1 / windows-sync / …"
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened vs. what you expected
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Ran `./install-autosync.sh`
+        2. `systemctl --user list-timers | grep intune`
+        3. …
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS release and the exact package versions matter enormously here.
+      value: |
+        - OS: Ubuntu 24.04.x / Windows 11 …
+        - intune-portal:
+        - microsoft-identity-broker:
+        - Desktop session (GNOME/Wayland/X11):
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant, REDACTED output
+      description: Optional. Strip every identifier first.
+      render: text

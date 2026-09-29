@@ -1,0 +1,17 @@
+# Diagnostic output — may contain tenant IDs, hostnames, UPNs. Never commit.
+diag-compliance-*.txt
+*.log
+logs/
+
+# Local secrets / environment
+*.env
+*.pfx
+*.cer
+*.key
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
