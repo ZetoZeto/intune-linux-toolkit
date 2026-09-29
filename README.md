@@ -1,5 +1,6 @@
 # Intune Linux Toolkit — silent auto-sync, enrollment troubleshooting & Windows sync helpers
 
+[![lint](https://github.com/ZetoZeto/intune-linux-toolkit/actions/workflows/lint.yml/badge.svg)](https://github.com/ZetoZeto/intune-linux-toolkit/actions/workflows/lint.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Platform: Ubuntu 22.04 / 24.04](https://img.shields.io/badge/Ubuntu-22.04%20%7C%2024.04-E95420?logo=ubuntu&logoColor=white)](#requirements)
 [![Platform: Windows 10 / 11](https://img.shields.io/badge/Windows-10%20%7C%2011-0078D6?logo=windows&logoColor=white)](#requirements)

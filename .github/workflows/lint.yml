@@ -1,0 +1,65 @@
+name: lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  shell:
+    name: Shell scripts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Syntax check (bash -n) — blocking
+        run: |
+          fail=0
+          while IFS= read -r -d '' f; do
+            echo "::group::bash -n $f"
+            if bash -n "$f"; then echo "ok"; else echo "SYNTAX ERROR in $f"; fail=1; fi
+            echo "::endgroup::"
+          done < <(find . -name '*.sh' -print0)
+          exit $fail
+
+      - name: ShellCheck — advisory
+        continue-on-error: true
+        run: |
+          sudo apt-get update && sudo apt-get install -y shellcheck
+          find . -name '*.sh' -print0 | xargs -0 -r shellcheck --severity=warning || true
+
+  powershell:
+    name: PowerShell scripts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Syntax check (parser) — blocking
+        shell: pwsh
+        run: |
+          $fail = $false
+          Get-ChildItem -Recurse -Filter *.ps1 | ForEach-Object {
+            $tokens = $null; $errors = $null
+            [System.Management.Automation.Language.Parser]::ParseFile($_.FullName, [ref]$tokens, [ref]$errors) | Out-Null
+            if ($errors.Count -gt 0) {
+              Write-Host "SYNTAX ERROR in $($_.FullName):"
+              $errors | ForEach-Object { Write-Host "  $($_.Message)" }
+              $fail = $true
+            } else {
+              Write-Host "ok  $($_.Name)"
+            }
+          }
+          if ($fail) { exit 1 }
+
+      - name: PSScriptAnalyzer — advisory
+        continue-on-error: true
+        shell: pwsh
+        run: |
+          Install-Module PSScriptAnalyzer -Force -Scope CurrentUser -ErrorAction SilentlyContinue
+          Get-ChildItem -Recurse -Filter *.ps1 |
+            ForEach-Object { Invoke-ScriptAnalyzer -Path $_.FullName -Severity Warning,Error } |
+            Format-Table -AutoSize
