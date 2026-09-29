@@ -1,4 +1,4 @@
-# Diagnostic output — may contain tenant IDs, hostnames, UPNs. Never commit.
+# Diagnostic output - may contain tenant IDs, hostnames, UPNs. Never commit.
 diag-compliance-*.txt
 *.log
 logs/

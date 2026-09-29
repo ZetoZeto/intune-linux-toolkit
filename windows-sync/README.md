@@ -1,4 +1,4 @@
-# Windows — Intune / MDE sync helpers & winget patch task
+# Windows - Intune / MDE sync helpers & winget patch task
 
 Three small, self-contained PowerShell helpers for a Windows 10/11 estate managed by Intune +
 Defender for Business.
@@ -12,8 +12,8 @@ Defender for Business.
 ## Sync-Intune.ps1
 
 Handy when you've just assigned a policy or app and don't want to wait for the natural polling cycle
-(~1 h, up to 8 h for Win32 apps). It reproduces what the **Settings → Accounts → Access work or
-school → Info → Sync** button does, plus an IME restart that the button does not do.
+(~1 h, up to 8 h for Win32 apps). It reproduces what the **Settings -> Accounts -> Access work or
+school -> Info -> Sync** button does, plus an IME restart that the button does not do.
 
 ```powershell
 # From an elevated PowerShell
@@ -36,7 +36,7 @@ Rather than relying on each vendor's own updater, this installs a single, logged
 registers a weekly scheduled task (Wednesday 03:00 by default), and is **idempotent** (re-running it
 replaces the task).
 
-**Deploy via Intune** — *Devices → Scripts and remediations → Platform scripts*:
+**Deploy via Intune** - *Devices -> Scripts and remediations -> Platform scripts*:
 
 - Run this script using the logged-on credentials: **No**
 - Enforce script signature check: **No**
@@ -46,4 +46,4 @@ Logs land in `C:\ProgramData\IntuneWingetUpdate\` (`deploy.log`, `winget-upgrade
 
 > **Tuning ideas**: change the trigger day/time in `New-ScheduledTaskTrigger`, or narrow the update
 > scope with `winget upgrade <id>` + a pinned list instead of `--all`. `--include-unknown` upgrades
-> packages whose installed version winget cannot detect — drop it if you want to be conservative.
+> packages whose installed version winget cannot detect - drop it if you want to be conservative.

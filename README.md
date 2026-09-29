@@ -1,4 +1,4 @@
-# Intune Linux Toolkit — silent auto-sync, enrollment troubleshooting & Windows sync helpers
+# Intune Linux Toolkit - silent auto-sync, enrollment troubleshooting & Windows sync helpers
 
 [![lint](https://github.com/ZetoZeto/intune-linux-toolkit/actions/workflows/lint.yml/badge.svg)](https://github.com/ZetoZeto/intune-linux-toolkit/actions/workflows/lint.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -13,19 +13,19 @@ Entra ID P1).
 
 It gathers three things that are poorly documented elsewhere:
 
-1. **Windows** — on-demand sync helpers (MDM policies, IME apps/scripts, Defender/MDE inventory) and
+1. **Windows** - on-demand sync helpers (MDM policies, IME apps/scripts, Defender/MDE inventory) and
    a SYSTEM scheduled task that keeps the estate patched with `winget`.
-2. **Linux** — a **silent Intune auto-sync** setup that removes the manual *"open portal → click
-   Synchronize → type password"* gesture, including the **undocumented `STATE_DIRECTORY` bug fix**
+2. **Linux** - a **silent Intune auto-sync** setup that removes the manual *"open portal -> click
+   Synchronize -> type password"* gesture, including the **undocumented `STATE_DIRECTORY` bug fix**
    without which the background agent never checks in.
-3. **Linux enrollment troubleshooting** — a full diagnostic + re-enrollment runbook for the case
+3. **Linux enrollment troubleshooting** - a full diagnostic + re-enrollment runbook for the case
    where fresh Linux registrations silently fail to complete MDM enrollment, plus a Graph-based
    diagnostic script and a ready-to-fill support case.
 
 > **Scope & honesty.** These are helpers and diagnostics, not a product. Everything here was written
 > and validated against a real estate of ~20 Windows and ~15 Ubuntu 24.04 endpoints. Paths, package
 > versions and behaviours reflect Ubuntu 24.04 + Intune client `1.26xx` and Windows 11 Pro as of
-> mid-2026 — verify against your own version before relying on them.
+> mid-2026 - verify against your own version before relying on them.
 
 ## Layout
 
@@ -57,20 +57,20 @@ Skipping checkin with Intune: Cannot checkin before a user logs in
 
 The portal syncs fine when opened manually, but the **background timer never does**. The fix is a
 systemd drop-in that clears the `StateDirectory=` directive (not just the env var) and relaunches the
-binary with `env -u STATE_DIRECTORY` — see [`linux-autosync/`](linux-autosync/).
+binary with `env -u STATE_DIRECTORY` - see [`linux-autosync/`](linux-autosync/).
 
 ## Contributing & security
 
 - Bug reports, environment reports (which Ubuntu / client version reproduces what) and PRs are
-  welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
+  welcome - see [CONTRIBUTING.md](CONTRIBUTING.md).
 - Please read [SECURITY.md](SECURITY.md) before opening an issue: **never paste diagnostic output,
   logs, tenant IDs, hostnames or UPNs** into a public issue.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT - see [LICENSE](LICENSE).
 
 ---
 
 *Sanitized for public release: no organization name, tenant ID, hostname, serial, device ID or
-secret. Placeholder values (`example.com`, `00000000-…`, `linux-test`) are meant to be replaced.*
+secret. Placeholder values (`example.com`, `00000000-...`, `linux-test`) are meant to be replaced.*

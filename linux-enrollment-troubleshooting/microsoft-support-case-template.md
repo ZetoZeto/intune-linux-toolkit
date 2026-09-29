@@ -1,7 +1,7 @@
-# Microsoft support case template — Linux Intune enrollment fails
+# Microsoft support case template - Linux Intune enrollment fails
 
 Ready-to-fill support case for the "fresh Linux registrations never complete MDM enrollment" issue.
-Replace every `<PLACEHOLDER>`. **Frame it as a precise question, not an outage claim** — an outage
+Replace every `<PLACEHOLDER>`. **Frame it as a precise question, not an outage claim** - an outage
 claim is refuted on sight because the Linux channel works for older devices on the same tenant.
 
 Suggested severity: **B**. Impact: no Linux device can be re-enrolled; the existing estate works but
@@ -11,13 +11,13 @@ becomes unrecoverable as soon as a device is reset.
 
 ## Case body (English, copy as-is)
 
-**Title:** Linux device registrations created since ~<MONTH YEAR> never complete MDM enrollment —
+**Title:** Linux device registrations created since ~<MONTH YEAR> never complete MDM enrollment -
 `operatingSystemVersion` stored as URL-encoded `PRETTY_NAME`, `managementType` stays empty,
 `LinuxDeviceCheckinService/details` returns 404
 
 **Tenant:** `<TENANT_ID>`
 **Scale unit:** `<SCALE_UNIT>` (from the check-in URL, e.g. `agents.<SCALE_UNIT>.manage.microsoft.com`)
-**Affected device:** `<HOSTNAME>` — Ubuntu <VERSION> LTS, <hardware model>, serial `<SERIAL>`, physical machine
+**Affected device:** `<HOSTNAME>` - Ubuntu <VERSION> LTS, <hardware model>, serial `<SERIAL>`, physical machine
 
 ### Summary
 
@@ -44,7 +44,7 @@ Their Entra device objects (`GET /v1.0/devices`) all show:
 - an object with `trustType: Workplace`, `managementType: MDM`
 - an object with `trustType: AzureAd`, `managementType: MDM`, `isManaged: True`, `isCompliant: True`,
   **created <EARLIER MONTH YEAR>**
-- `operatingSystemVersion` = `22.04` or `24.04` — a clean version string
+- `operatingSystemVersion` = `22.04` or `24.04` - a clean version string
 
 ### Failing behaviour (registrations created <DATE>)
 
@@ -103,9 +103,9 @@ tenant objects deleted beforehand with propagation time):
 | `<id>` | `<id>` | 500 |
 | `<id>` | `<id>` | 404 |
 
-`activity_id` values: `<activity_id>` (<timestamp>), `<activity_id>`, …
+`activity_id` values: `<activity_id>` (<timestamp>), `<activity_id>`, ...
 
-### Client versions tested — not the cause
+### Client versions tested - not the cause
 
 | Package | Versions tested | Result |
 |---|---|---|
@@ -128,7 +128,7 @@ tenant objects deleted beforehand with propagation time):
 - `Dynamic pinning: trusted` on the check-in host; `HTTP client proxy: none`.
 - Unique `machine-id`, real DMI, physical machine, single network interface, no bridge, no VPN.
 - Inventory payload is well-formed:
-  `{ device_id, device_name, manufacturer, os_distribution: "ubuntu", os_version: "24.04" }` — note
+  `{ device_id, device_name, manufacturer, os_distribution: "ubuntu", os_version: "24.04" }` - note
   the client computes `24.04` correctly, yet the registration stores `Ubuntu+24.04.4+LTS`.
 
 ### Impact

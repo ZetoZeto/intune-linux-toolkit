@@ -5,7 +5,7 @@ matter here: not leaking your own data, and reporting genuine vulnerabilities re
 
 ## Do not leak your own data
 
-The scripts in this repo — especially `Diagnose-Compliance.ps1` and `fresh-reinstall.sh` — produce
+The scripts in this repo - especially `Diagnose-Compliance.ps1` and `fresh-reinstall.sh` - produce
 output that **identifies your tenant and your machines**:
 
 - tenant ID, scale unit
@@ -16,7 +16,7 @@ output that **identifies your tenant and your machines**:
 
 **Never** paste this into a public GitHub issue, pull request, discussion, or commit. The diagnostic
 transcript files (`diag-compliance-*.txt`, `*.log`) are already covered by [`.gitignore`](.gitignore)
-so they cannot be committed by accident — do not force them in.
+so they cannot be committed by accident - do not force them in.
 
 When you need to share output to illustrate a problem, redact to the project's placeholder
 conventions first:
@@ -24,7 +24,7 @@ conventions first:
 | Real value | Placeholder |
 |---|---|
 | tenant / device GUID | `00000000-0000-0000-0000-000000000000` |
-| hostname | `linux-test`, `linux-a` … |
+| hostname | `linux-test`, `linux-a` ... |
 | domain / UPN | `user@example.com` |
 | scale unit | `<SCALE_UNIT>` |
 
@@ -39,7 +39,7 @@ please report it **privately** rather than opening a public issue:
 - Contact the maintainer through their GitHub profile.
 
 Please include the affected file, the OS / client version, and a minimal description of the impact.
-There is no bounty — this is a community toolkit — but fixes for safety issues are prioritized.
+There is no bounty - this is a community toolkit - but fixes for safety issues are prioritized.
 
 ## Scope note
 

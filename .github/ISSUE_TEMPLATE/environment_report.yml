@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        These reports are the most useful contribution to this project — they build the
+        These reports are the most useful contribution to this project - they build the
         compatibility picture that no official documentation provides. **No identifiers**, please.
   - type: input
     id: os
@@ -32,9 +32,9 @@ body:
     attributes:
       label: STATE_DIRECTORY behaviour observed (before applying the drop-in)
       options:
-        - "Mode 1 — agent dies in 238/STATE_DIRECTORY before exec"
-        - "Mode 2 — agent runs but logs 'Cannot checkin before a user logs in'"
-        - "Neither — background sync worked without the drop-in"
+        - "Mode 1 - agent dies in 238/STATE_DIRECTORY before exec"
+        - "Mode 2 - agent runs but logs 'Cannot checkin before a user logs in'"
+        - "Neither - background sync worked without the drop-in"
         - "Not applicable / didn't test"
     validations:
       required: true
@@ -42,4 +42,4 @@ body:
     id: notes
     attributes:
       label: Notes
-      description: Anything else — did the drop-in fix it? Did the cadence hold?
+      description: Anything else - did the drop-in fix it? Did the cadence hold?
